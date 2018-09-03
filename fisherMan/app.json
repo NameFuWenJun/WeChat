@@ -8,7 +8,8 @@
     "pages/component/orders/orders",
     "pages/component/details/details",
     "pages/component/list/list",
-    "pages/component/search/search"
+    "pages/component/search/search",
+    "pages/test/test"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
