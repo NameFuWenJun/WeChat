@@ -1,17 +1,23 @@
-package com.fisher.service;
+package com.fisher.service.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fisher.mapper.ImageMapper;
+import com.fisher.pojo.Image;
+import com.fisher.service.ImageService;
 import com.fisher.utils.ImageUtiles;
 
 @Service
-public class ImageService {
-    
+public class ImageServiceimpl implements ImageService{
+    @Autowired
+    private ImageMapper imageMapper;
+    @Override
     public byte [] getImage(HttpServletResponse response,String imagePath){
         byte [] data=ImageUtiles.getImages(imagePath);
         response.setContentType("image/jpeg");  // 设置返回的文件类型  
@@ -24,5 +30,11 @@ public class ImageService {
             e.printStackTrace();
         } // 得到向客户端输出二进制数据的对象  
         return data;
+    }
+
+    @Override
+    public Image getImage(String merchandiseId) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

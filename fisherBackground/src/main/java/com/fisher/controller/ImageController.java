@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fisher.service.ImageService;
+import com.fisher.service.impl.ImageServiceimpl;
 
 @RestController
 public class ImageController {
     
     @Autowired
-    private ImageService imageService;
+    private ImageServiceimpl imageService;
     /**
      * 从服务器获取图片的Api控制器
      * @param response
