@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fisher.mapper.UserMapper;
+import com.fisher.pojo.User;
 import com.fisher.service.impl.ImageServiceimpl;
 
 @RestController
@@ -13,6 +15,8 @@ public class ImageController {
     
     @Autowired
     private ImageServiceimpl imageService;
+    
+    private UserMapper userMapper;
     /**
      * 从服务器获取图片的Api控制器
      * @param response
@@ -23,5 +27,15 @@ public class ImageController {
     public byte[] getImages(HttpServletResponse response,String path){
         System.out.println(path);
         return imageService.getImage(response, path);
+    }
+    
+    @RequestMapping("test")
+    public void test(){
+        User test=new User();
+        test.setUserId(1);
+        test.setUserName("test");
+        test.setOpenid("test");
+        test.setUserPassword("123456");
+        userMapper.insert(test);
     }
 }

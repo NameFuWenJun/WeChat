@@ -1,25 +1,14 @@
 package com.fisher.pojo;
 
-import java.util.List;
-
-/**
- * 商品信息类
- * @author fuwenjun01
- *
- */
 public class Merchandise {
     private Integer merchandiseId;
-    //商品的图片信息,后面再service中设置image信息
-    private Image image;
+
     private Integer imageId;
 
     private Integer describeId;
-    //商品的描述信息,通过service中设置注入
-    private Describe describe;
-    
+
     private Integer commentId;
-    //用户评价信息
-    private List<Comment> comments;
+
     private String merchandiseName;
 
     private Double merchandisePrice;
@@ -29,31 +18,6 @@ public class Merchandise {
     private String merchandisePricescope;
 
     private Integer merchandiseInventory;
-
-    
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public Describe getDescribe() {
-        return describe;
-    }
-
-    public void setDescribe(Describe describe) {
-        this.describe = describe;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 
     public Integer getMerchandiseId() {
         return merchandiseId;

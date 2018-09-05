@@ -1,19 +1,14 @@
 package com.fisher.pojo;
-/**
- * 用户评价实体类
- * @author fuwenjun01
- *
- */
+
 public class Comment {
-    
     private Integer commentId;
-    //对应商品id
+
     private Integer merchandiseId;
-    //对应用户id
+
     private Integer userId;
-    //评价级别:好评或者差评,考虑是否使用枚举类
+
     private String commentLevel;
-    
+
     public Integer getCommentId() {
         return commentId;
     }

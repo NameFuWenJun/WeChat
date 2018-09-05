@@ -1,17 +1,12 @@
 package com.fisher.pojo;
-/**
- * 购物车中详细信息
- * @author fuwenjun01
- *
- */
+
 public class CartMessage {
-    //购物车对应的商品id
     private Integer merchandiseId;
-    //对应购物车id
+
     private Integer cartId;
-    //当前商品的数量
+
     private Integer merchandiseNums;
-    //加入购物车时间
+
     private String puttime;
 
     public Integer getMerchandiseId() {

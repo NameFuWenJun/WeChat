@@ -11,7 +11,7 @@ public class LoginController {
 	 * @param openId 微信用户对应的唯一的id
 	 * @return
 	 */
-	@RequestMapping
+	@RequestMapping("/login")
 	public String Login(String openId){
 		System.out.println(openId);
 		return "Success";

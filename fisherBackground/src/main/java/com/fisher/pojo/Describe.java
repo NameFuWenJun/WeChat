@@ -1,12 +1,8 @@
 package com.fisher.pojo;
-/**
- * 商品描述
- * @author fuwenjun01
- *
- */
+
 public class Describe {
     private Integer describeId;
-    //商品描述具体信息
+
     private String describeText;
 
     public Integer getDescribeId() {
