@@ -1,5 +1,7 @@
 package com.fisher.mapper;
 
+import java.util.List;
+
 import com.fisher.pojo.Path;
 
 public interface PathMapper {
@@ -14,4 +16,7 @@ public interface PathMapper {
     int updateByPrimaryKeySelective(Path record);
 
     int updateByPrimaryKey(Path record);
+
+    List<Path> selectByImageKey(Integer imageId);
+
 }

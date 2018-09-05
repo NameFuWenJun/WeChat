@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fisher.mapper.UserMapper;
+import com.fisher.pojo.Image;
 import com.fisher.pojo.User;
-import com.fisher.service.impl.ImageServiceimpl;
+import com.fisher.service.ImageService;
 
 @RestController
 public class ImageController {
     
     @Autowired
-    private ImageServiceimpl imageService;
+    private ImageService imageService;
+    //为了测试引入的
     @Autowired
     private UserMapper userMapper;
     /**
@@ -31,12 +33,7 @@ public class ImageController {
     
     @RequestMapping("test")
     public void test(){
-        User test=new User();
-        test.setUserId(1);
-        test.setUserName("test");
-        test.setOpenid("test");
-        test.setUserPassword("123456");
-        System.out.println(userMapper);
-        userMapper.insert(test);
+        Image image=imageService.getImage(1);
+        
     }
 }

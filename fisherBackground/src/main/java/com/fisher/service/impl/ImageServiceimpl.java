@@ -2,6 +2,7 @@ package com.fisher.service.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fisher.mapper.ImageMapper;
+import com.fisher.mapper.PathMapper;
 import com.fisher.pojo.Image;
+import com.fisher.pojo.Path;
 import com.fisher.service.ImageService;
 import com.fisher.utils.ImageUtiles;
 
@@ -17,6 +20,8 @@ import com.fisher.utils.ImageUtiles;
 public class ImageServiceimpl implements ImageService{
     @Autowired
     private ImageMapper imageMapper;
+    @Autowired
+    private PathMapper pathMapper;
     public byte [] getImage(HttpServletResponse response,String imagePath){
         byte [] data=ImageUtiles.getImages(imagePath);
         response.setContentType("image/jpeg");  // 设置返回的文件类型  
@@ -32,8 +37,11 @@ public class ImageServiceimpl implements ImageService{
     }
 
     @Override
-    public Image getImage(String merchandiseId) {
+    public Image getImage(Integer merchandiseId) {
         // TODO Auto-generated method stub
-        return null;
+        Image image=imageMapper.selectByMerchandiseKey(merchandiseId);
+        List<Path> paths=pathMapper.selectByImageKey(image.getImageId());
+        image.setPaths(paths);
+        return image;
     }
 }

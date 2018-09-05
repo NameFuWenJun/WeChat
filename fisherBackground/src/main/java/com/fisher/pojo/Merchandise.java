@@ -1,13 +1,9 @@
 package com.fisher.pojo;
 
+import java.util.List;
+
 public class Merchandise {
     private Integer merchandiseId;
-
-    private Integer imageId;
-
-    private Integer describeId;
-
-    private Integer commentId;
 
     private String merchandiseName;
 
@@ -18,6 +14,36 @@ public class Merchandise {
     private String merchandisePricescope;
 
     private Integer merchandiseInventory;
+    //用户评价,后面有service中注入该值
+    private List<Comment> comment;
+    //商品描述,后面service注入该值
+    private Describe describe;
+    //商品对应图片信息,由service注入
+    private Image image;
+    
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public Describe getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(Describe describe) {
+        this.describe = describe;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 
     public Integer getMerchandiseId() {
         return merchandiseId;
@@ -25,30 +51,6 @@ public class Merchandise {
 
     public void setMerchandiseId(Integer merchandiseId) {
         this.merchandiseId = merchandiseId;
-    }
-
-    public Integer getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(Integer imageId) {
-        this.imageId = imageId;
-    }
-
-    public Integer getDescribeId() {
-        return describeId;
-    }
-
-    public void setDescribeId(Integer describeId) {
-        this.describeId = describeId;
-    }
-
-    public Integer getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
     }
 
     public String getMerchandiseName() {

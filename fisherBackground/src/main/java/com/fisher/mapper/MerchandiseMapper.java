@@ -1,5 +1,7 @@
 package com.fisher.mapper;
 
+import java.util.List;
+
 import com.fisher.pojo.Merchandise;
 
 public interface MerchandiseMapper {
@@ -14,4 +16,6 @@ public interface MerchandiseMapper {
     int updateByPrimaryKeySelective(Merchandise record);
 
     int updateByPrimaryKey(Merchandise record);
+
+    List<Merchandise> selectBykeyWords(Merchandise merchandise);
 }

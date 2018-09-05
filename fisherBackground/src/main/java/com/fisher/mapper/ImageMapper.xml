@@ -16,6 +16,12 @@
     from image
     where image_id = #{imageId,jdbcType=INTEGER}
   </select>
+   <select id="selectByMerchandiseKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where merchandise_id = #{merchandiseId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from image
     where image_id = #{imageId,jdbcType=INTEGER}

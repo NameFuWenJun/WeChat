@@ -1,5 +1,7 @@
 package com.fisher.mapper;
 
+import java.util.List;
+
 import com.fisher.pojo.Comment;
 
 public interface CommentMapper {
@@ -14,4 +16,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> SelectCommentByMerchandiseKey(int merchandiseId);
 }

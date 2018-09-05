@@ -1,5 +1,7 @@
 package com.fisher.pojo;
 
+import java.util.List;
+
 public class Image {
     private Integer imageId;
 
@@ -8,6 +10,15 @@ public class Image {
     private String imagePath;
 
     private String imageName;
+
+    private List<Path> paths;
+    public List<Path> getPaths() {
+        return paths;
+    }
+
+    public void setPaths(List<Path> paths) {
+        this.paths = paths;
+    }
 
     public Integer getImageId() {
         return imageId;
