@@ -18,5 +18,7 @@ public interface PathMapper {
     int updateByPrimaryKey(Path record);
 
     List<Path> selectByImageKey(Integer imageId);
+    
+    List<String> selectString(int imageId);
 
 }

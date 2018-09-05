@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fisher.mapper.ImageMapper;
+import com.fisher.mapper.PathMapper;
 import com.fisher.mapper.UserMapper;
 import com.fisher.pojo.Image;
 import com.fisher.pojo.Path;
@@ -23,6 +24,8 @@ public class FisherBackgroundApplicationTests {
 	private UserMapper userMapper;
 	@Autowired
 	private ImageService imageService;
+	@Autowired
+	private PathMapper pathmapper;
 	@Test
 	public void contextLoads() {
 		User test=new User();
@@ -34,9 +37,7 @@ public class FisherBackgroundApplicationTests {
 	}
 	@Test
 	public void test(){
-	    Image image=imageService.getImage(1);
-	    List<Path> paths=image.getPaths();
-	    System.out.println(image.getImageName()+" "+paths.size());
+	    System.out.println(pathmapper.selectString(1).get(0));
 	}
 
 }
