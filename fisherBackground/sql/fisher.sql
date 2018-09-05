@@ -71,9 +71,12 @@ DROP TABLE IF EXISTS `image`;
 
 CREATE TABLE `image` (
   `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchandise_id` int(11) DEFAULT NULL,
   `image_path` varchar(50) DEFAULT NULL,
   `image_name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`image_id`)
+  PRIMARY KEY (`image_id`),
+  KEY `FK_Reference_10` (`merchandise_id`),
+  CONSTRAINT `FK_Reference_10` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandise` (`merchandise_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `image` */

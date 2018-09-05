@@ -17,7 +17,6 @@ import com.fisher.utils.ImageUtiles;
 public class ImageServiceimpl implements ImageService{
     @Autowired
     private ImageMapper imageMapper;
-    @Override
     public byte [] getImage(HttpServletResponse response,String imagePath){
         byte [] data=ImageUtiles.getImages(imagePath);
         response.setContentType("image/jpeg");  // 设置返回的文件类型  
