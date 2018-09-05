@@ -15,7 +15,7 @@ public class ImageController {
     
     @Autowired
     private ImageServiceimpl imageService;
-    
+    @Autowired
     private UserMapper userMapper;
     /**
      * 从服务器获取图片的Api控制器
@@ -36,6 +36,7 @@ public class ImageController {
         test.setUserName("test");
         test.setOpenid("test");
         test.setUserPassword("123456");
+        System.out.println(userMapper);
         userMapper.insert(test);
     }
 }

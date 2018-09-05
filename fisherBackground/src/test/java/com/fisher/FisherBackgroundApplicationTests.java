@@ -18,9 +18,8 @@ public class FisherBackgroundApplicationTests {
 	@Test
 	public void contextLoads() {
 		User test=new User();
-		test.setUserId(1);
 		test.setUserName("test");
-		test.setOpenid("test");
+		test.setOpenid("test1");
 		test.setUserPassword("123456");
 		userMapper.insert(test);
 		
