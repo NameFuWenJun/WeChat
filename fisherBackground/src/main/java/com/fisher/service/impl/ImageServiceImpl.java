@@ -17,7 +17,7 @@ import com.fisher.service.ImageService;
 import com.fisher.utils.ImageUtiles;
 
 @Service
-public class ImageServiceimpl implements ImageService{
+public class ImageServiceImpl implements ImageService{
     @Autowired
     private ImageMapper imageMapper;
     @Autowired

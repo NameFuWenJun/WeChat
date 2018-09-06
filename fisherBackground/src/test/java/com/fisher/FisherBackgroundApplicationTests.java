@@ -1,19 +1,14 @@
 package com.fisher;
 
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fisher.mapper.ImageMapper;
 import com.fisher.mapper.PathMapper;
 import com.fisher.mapper.UserMapper;
-import com.fisher.pojo.Image;
-import com.fisher.pojo.Path;
 import com.fisher.pojo.User;
 import com.fisher.service.ImageService;
 

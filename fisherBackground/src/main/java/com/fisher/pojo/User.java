@@ -8,6 +8,14 @@ public class User {
     private String userPassword;
 
     private String openid;
+    
+    
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "用户Id:"+userId+" 用户昵称:"+ userName+" 用户openId:"+openid;
+    }
 
     public Integer getUserId() {
         return userId;

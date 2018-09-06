@@ -1,8 +1,11 @@
 package com.fisher.mapper;
 
+import org.apache.ibatis.annotations.Update;
+
 import com.fisher.pojo.Image;
 
 public interface ImageMapper {
+
     int deleteByPrimaryKey(Integer imageId);
 
     int insert(Image record);

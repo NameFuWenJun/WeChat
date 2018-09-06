@@ -1,7 +1,10 @@
 package com.fisher.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +13,7 @@ import com.fisher.mapper.UserMapper;
 import com.fisher.pojo.Image;
 import com.fisher.pojo.User;
 import com.fisher.service.ImageService;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 @RestController
 public class ImageController {
@@ -34,6 +38,5 @@ public class ImageController {
     @RequestMapping("test")
     public void test(){
         Image image=imageService.getImage(1);
-        
     }
 }
