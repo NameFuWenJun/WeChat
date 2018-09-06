@@ -2,6 +2,7 @@
 App({
   globalData: {
     userInfo: null,
+    userNickname :null,
     loginUrl: "",
     url: "http://localhost:8080",
   },
@@ -11,6 +12,18 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     var that = this;
+    wx.getUserInfo({
+      success: tes => {
+        // 可以将 tes 发送给后台解码出 unionId
+        that.globalData.userInfo = tes.userInfo;
+        that.globalData.userNickname = tes.userInfo.nickName;
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(tes)
+        }
+      }
+    })
     // 登录
     wx.login({
       success: res => {
@@ -26,36 +39,21 @@ App({
               grant_type: 'authorization_code'  
             },
              success: function (res) {
+               console.log(res.data.openid + " " + that.globalData.userNickname)
                wx.request({
                  url: 'http://localhost:8080/login',
                  data: {
-                   openId: res.data.openid
+                   openId: res.data.openid,
+                   userNickname: that.globalData.userNickname
                  },
                  //后台加载成功
                  success: function(res) {
-                   // 获取用户信息
-                   wx.getSetting({
-                     success: res => {
-                       if (res.authSetting['scope.userInfo']) {
-                         // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                         wx.getUserInfo({
-                           success: res => {
-                             // 可以将 res 发送给后台解码出 unionId
-                             that.globalData.userInfo = res.userInfo
-
-                             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                             // 所以此处加入 callback 以防止这种情况
-                             if (this.userInfoReadyCallback) {
-                               this.userInfoReadyCallback(res)
-                             }
-                           }
-                         })
-                       }
-                     }
-                   })
+                   // 获取用户信
                    console.log("登陆成功"+res)
                  },
-                 fail: function(res) {},
+                 fail: function(res) {
+                   that.globalData.userInfo = ""
+                 },
                  complete: function(res) {},
                })
             }
@@ -64,6 +62,14 @@ App({
           console.log('登录失败！' + res.errMsg)
         }
     
+      }
+    })
+
+    wx.getSetting({
+      success: tes => {
+        if (tes.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+        }
       }
     })
     
