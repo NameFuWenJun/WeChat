@@ -1,181 +1,158 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2018/9/5 17:23:06                            */
-/*===
-DROP DATABASE fisher;CREATE DATABASE fisher
-===========================================================*/
+/*
+SQLyog ‰ºÅ‰∏öÁâà - MySQL GUI v8.14 
+MySQL - 5.7.17-log : Database - fisher
+*********************************************************************
+*/
 
-DROP TABLE IF EXISTS cart;
+/*!40101 SET NAMES utf8 */;
 
-DROP INDEX cartId_index ON cartMessage;
+/*!40101 SET SQL_MODE=''*/;
 
-DROP INDEX cartMerchandise_index ON cartMessage;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`fisher` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-DROP TABLE IF EXISTS cartMessage;
+USE `fisher`;
 
-DROP TABLE IF EXISTS COMMENT;
+/*Table structure for table `cart` */
 
-DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS `cart`;
 
-DROP INDEX merchandisName ON merchandise;
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `FK_Reference_7` (`user_id`),
+  CONSTRAINT `FK_Reference_7` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS merchandise;
+/*Data for the table `cart` */
 
-DROP TABLE IF EXISTS path;
+/*Table structure for table `cartmessage` */
 
-DROP INDEX openidIndex ON USER;
+DROP TABLE IF EXISTS `cartmessage`;
 
-DROP TABLE IF EXISTS USER;
+CREATE TABLE `cartmessage` (
+  `merchandise_id` int(11) DEFAULT NULL,
+  `cart_id` int(11) DEFAULT NULL,
+  `merchandise_nums` int(11) DEFAULT NULL,
+  `putTime` varchar(20) DEFAULT NULL,
+  KEY `cartMerchandise_index` (`merchandise_id`),
+  KEY `cartId_index` (`cart_id`),
+  CONSTRAINT `FK_Reference_8` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandise` (`merchandise_id`),
+  CONSTRAINT `FK_Reference_9` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS user_describe;
+/*Data for the table `cartmessage` */
 
-/*==============================================================*/
-/* Table: cart                                                  */
-/*==============================================================*/
-CREATE TABLE cart
-(
-   cart_id              INT NOT NULL AUTO_INCREMENT,
-   user_id              INT,
-   PRIMARY KEY (cart_id)
-);
+/*Table structure for table `comment` */
 
-/*==============================================================*/
-/* Table: cartMessage                                           */
-/*==============================================================*/
-CREATE TABLE cartMessage
-(
-   merchandise_id       INT,
-   cart_id              INT,
-   merchandise_nums     INT,
-   putTime              VARCHAR(20)
-);
+DROP TABLE IF EXISTS `comment`;
 
-/*==============================================================*/
-/* Index: cartMerchandise_index                                 */
-/*==============================================================*/
-CREATE INDEX cartMerchandise_index ON cartMessage
-(
-   merchandise_id
-);
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchandise_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `comment_level` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `FK_Reference_3` (`merchandise_id`),
+  KEY `FK_Reference_5` (`user_id`),
+  CONSTRAINT `FK_Reference_3` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandise` (`merchandise_id`),
+  CONSTRAINT `FK_Reference_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*==============================================================*/
-/* Index: cartId_index                                          */
-/*==============================================================*/
-CREATE INDEX cartId_index ON cartMessage
-(
-   cart_id
-);
+/*Data for the table `comment` */
 
-/*==============================================================*/
-/* Table: comment                                               */
-/*==============================================================*/
-CREATE TABLE COMMENT
-(
-   comment_id           INT NOT NULL AUTO_INCREMENT,
-   merchandise_id       INT,
-   user_id              INT,
-   comment_level        VARCHAR(30),
-   PRIMARY KEY (comment_id)
-);
+/*Table structure for table `image` */
 
-/*==============================================================*/
-/* Table: image                                                 */
-/*==============================================================*/
-CREATE TABLE image
-(
-   image_id             INT NOT NULL AUTO_INCREMENT,
-   merchandise_id       INT,
-   image_path           VARCHAR(50),
-   image_name           VARCHAR(20),
-   PRIMARY KEY (image_id)
-);
+DROP TABLE IF EXISTS `image`;
 
-/*==============================================================*/
-/* Table: merchandise                                           */
-/*==============================================================*/
-CREATE TABLE merchandise
-(
-   merchandise_id       INT NOT NULL AUTO_INCREMENT,
-   merchandise_name     VARCHAR(20),
-   merchandise_price    DOUBLE,
-   merchandise_attribute VARCHAR(20),
-   merchandise_priceScope VARCHAR(20),
-   merchandise_inventory INT,
-   PRIMARY KEY (merchandise_id)
-);
+CREATE TABLE `image` (
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchandise_id` int(11) DEFAULT NULL,
+  `image_path` varchar(50) DEFAULT NULL,
+  `image_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`image_id`),
+  KEY `FK_Reference_10` (`merchandise_id`),
+  CONSTRAINT `FK_Reference_10` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandise` (`merchandise_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-/*==============================================================*/
-/* Index: merchandisName                                        */
-/*==============================================================*/
-CREATE INDEX merchandisName ON merchandise
-(
-   merchandise_name
-);
+/*Data for the table `image` */
 
-/*==============================================================*/
-/* Table: path                                                  */
-/*==============================================================*/
-CREATE TABLE path
-(
-   path_id              INT NOT NULL AUTO_INCREMENT,
-   image_id             INT,
-   path_value           VARCHAR(30),
-   path_name            VARCHAR(20),
-   PRIMARY KEY (path_id)
-);
+insert  into `image`(`image_id`,`merchandise_id`,`image_path`,`image_name`) values (1,1,'image_path','image_name');
 
-/*==============================================================*/
-/* Table: user                                                  */
-/*==============================================================*/
-CREATE TABLE USER
-(
-   user_id              INT NOT NULL AUTO_INCREMENT,
-   user_name            VARCHAR(20),
-   user_password        VARCHAR(30),
-   openid               VARCHAR(30),
-   PRIMARY KEY (user_id)
-);
+/*Table structure for table `merchandise` */
 
-/*==============================================================*/
-/* Index: openidIndex                                           */
-/*==============================================================*/
-CREATE UNIQUE INDEX openidIndex ON USER
-(
-   openid
-);
+DROP TABLE IF EXISTS `merchandise`;
 
-/*==============================================================*/
-/* Table: user_describe                                         */
-/*==============================================================*/
-CREATE TABLE user_describe
-(
-   describe_id          INT NOT NULL AUTO_INCREMENT,
-   merchandise_id       INT,
-   describe_text        TEXT,
-   PRIMARY KEY (describe_id)
-);
+CREATE TABLE `merchandise` (
+  `merchandise_id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchandise_name` varchar(20) DEFAULT NULL,
+  `merchandise_price` double DEFAULT NULL,
+  `merchandise_attribute` varchar(20) DEFAULT NULL,
+  `merchandise_priceScope` varchar(20) DEFAULT NULL,
+  `merchandise_inventory` int(11) DEFAULT NULL,
+  PRIMARY KEY (`merchandise_id`),
+  KEY `merchandisName` (`merchandise_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-ALTER TABLE cart ADD CONSTRAINT FK_Reference_7 FOREIGN KEY (user_id)
-      REFERENCES USER (user_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+/*Data for the table `merchandise` */
 
-ALTER TABLE cartMessage ADD CONSTRAINT FK_Reference_8 FOREIGN KEY (merchandise_id)
-      REFERENCES merchandise (merchandise_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+insert  into `merchandise`(`merchandise_id`,`merchandise_name`,`merchandise_price`,`merchandise_attribute`,`merchandise_priceScope`,`merchandise_inventory`) values (1,'merchandise_name',0,'merchandise_attribut','merchandise_priceSco',0);
 
-ALTER TABLE cartMessage ADD CONSTRAINT FK_Reference_9 FOREIGN KEY (cart_id)
-      REFERENCES cart (cart_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+/*Table structure for table `path` */
 
-ALTER TABLE COMMENT ADD CONSTRAINT FK_Reference_3 FOREIGN KEY (merchandise_id)
-      REFERENCES merchandise (merchandise_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+DROP TABLE IF EXISTS `path`;
 
-ALTER TABLE COMMENT ADD CONSTRAINT FK_Reference_5 FOREIGN KEY (user_id)
-      REFERENCES USER (user_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+CREATE TABLE `path` (
+  `path_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_id` int(11) DEFAULT NULL,
+  `path_value` varchar(30) DEFAULT NULL,
+  `path_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`path_id`),
+  KEY `FK_Reference_6` (`image_id`),
+  CONSTRAINT `FK_Reference_6` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-ALTER TABLE image ADD CONSTRAINT FK_Reference_10 FOREIGN KEY (merchandise_id)
-      REFERENCES merchandise (merchandise_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+/*Data for the table `path` */
 
-ALTER TABLE path ADD CONSTRAINT FK_Reference_6 FOREIGN KEY (image_id)
-      REFERENCES image (image_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+insert  into `path`(`path_id`,`image_id`,`path_value`,`path_name`) values (1,1,'path_value','path_name');
 
-ALTER TABLE user_describe ADD CONSTRAINT FK_Reference_11 FOREIGN KEY (merchandise_id)
-      REFERENCES merchandise (merchandise_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+/*Table structure for table `user` */
 
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) DEFAULT NULL,
+  `user_password` varchar(30) DEFAULT NULL,
+  `openid` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `openidIndex` (`openid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `user` */
+
+insert  into `user`(`user_id`,`user_name`,`user_password`,`openid`) values (1,'Ì†ºÌºê  Ì†ΩÌ¥¢ Ì†ΩÌ¥° Ì†ΩÌ¥£','user_password','openid');
+
+/*Table structure for table `user_describe` */
+
+DROP TABLE IF EXISTS `user_describe`;
+
+CREATE TABLE `user_describe` (
+  `describe_id` int(11) NOT NULL AUTO_INCREMENT,
+  `merchandise_id` int(11) DEFAULT NULL,
+  `describe_text` text,
+  PRIMARY KEY (`describe_id`),
+  KEY `FK_Reference_11` (`merchandise_id`),
+  CONSTRAINT `FK_Reference_11` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandise` (`merchandise_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_describe` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
