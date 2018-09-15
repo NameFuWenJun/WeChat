@@ -6,7 +6,7 @@
     </view>
     <view class="address-box">
         <view class="address-manage">
-            <navigator url="/page/component/address/address">地址管理</navigator>
+            <navigator url="/pages/component/address/address">地址管理</navigator>
         </view>
         <view wx:if="{{hasAddress}}" class="address-list">
             <view>{{address.name}}</view>

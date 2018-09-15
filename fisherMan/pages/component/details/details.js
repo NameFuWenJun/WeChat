@@ -1,22 +1,17 @@
 // page/component/details/details.js
+var app=getApp();
 Page({
   data:{
-    goods: {
-      id: 1,
-      image: '/image/goods1.png',
-      title: '新鲜梨花带雨',
-      price: 0.01,
-      stock: '有货',
-      detail: '这里是梨花带雨详情。',
-      parameter: '125g/个',
-      service: '不支持退货'
-    },
+    merchandise:null,
     num: 1,
     totalNum: 0,
     hasCarts: false,
     curIndex: 0,
     show: false,
-    scaleCart: false
+    scaleCart: false,
+    url: app.globalData.url,
+    imageUrl: app.globalData.url+"/getImage?path="
+
   },
 
   addCount() {
@@ -56,6 +51,25 @@ Page({
     this.setData({
       curIndex: index
     })
-  }
+  },
  
+ onLoad:function(options){
+   var that=this;
+   wx.request({
+     url: app.globalData.url+"/getDetails",
+     data: {
+      merchandiseId:options.merchandiseId
+     },
+     //后台加载成功
+     success: function (res) {
+       that.setData({
+         merchandise:res.data.merchandise
+       })
+       console.log(res.data);
+   
+     },
+     fail: function (res) { },
+     complete: function (res) { },
+   })
+ }
 })

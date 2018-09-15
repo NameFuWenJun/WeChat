@@ -16,7 +16,7 @@
     from comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </select>
-   <select id="SelectCommentByMerchandiseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   <select id="SelectCommentByMerchandiseKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from comment

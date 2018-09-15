@@ -3,8 +3,7 @@ App({
   globalData: {
     userInfo: null,
     userNickname :null,
-    loginUrl: "",
-    url: "http://localhost:8080",
+    url: "http://localhost:8080"
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -49,7 +48,7 @@ App({
                  //后台加载成功
                  success: function(res) {
                    // 获取用户信
-                   console.log("登陆成功"+res)
+                   console.log("登陆成功"+res);
                  },
                  fail: function(res) {
                    that.globalData.userInfo = ""

@@ -1,11 +1,19 @@
 package com.fisher.controller;
 
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fisher.mapper.UserMapper;
+import com.fisher.pojo.HomeImage;
+import com.fisher.pojo.Merchandise;
 import com.fisher.pojo.User;
+import com.fisher.service.HomeImageService;
+import com.fisher.service.MerchandiseService;
 import com.fisher.service.UserService;
 
 @RestController
@@ -13,6 +21,8 @@ public class LoginController {
     //用户默认密码
     private final String userPassword="123456?";
     
+
+   
 	@Autowired
     private UserService userService;
 	/**
@@ -35,7 +45,8 @@ public class LoginController {
 		}
 		//读取用户历史信息
 		System.out.println("用户信息:"+user.toString());
-		
-		return "Success";
+		return "success";
 	}
+
+	
 }

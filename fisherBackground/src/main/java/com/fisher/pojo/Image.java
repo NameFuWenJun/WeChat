@@ -8,7 +8,7 @@ public class Image {
     private Integer merchandiseId;
 
     private String imagePath;
-
+    //图片主图默认在商品id的文件夹下文件名以imageName开头
     private String imageName;
 
     private List<Path> paths;

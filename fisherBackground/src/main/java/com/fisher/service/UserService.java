@@ -16,4 +16,6 @@ public interface UserService {
     int updateByPrimaryKey(User record);
 
     User selectByOpenid(String openId);
+    
+    
 }

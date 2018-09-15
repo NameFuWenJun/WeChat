@@ -8,44 +8,52 @@ public class Merchandise {
     private String merchandiseName;
 
     private Double merchandisePrice;
-
+    //商品有多个种类的话的哪一种,属性
     private String merchandiseAttribute;
-
+    //商品价格范围
     private String merchandisePricescope;
-
+    //库存
     private Integer merchandiseInventory;
-    //用户评价,后面有service中注入该值
+    //添加时间(data类型)
+    private String merchandiseTime;
+    //类型
+    private Integer clazzId;
+
+    //是否促销
+    private Integer ispromotion;
+
+    //商品评论,后面注入
     private List<Comment> comment;
-    //商品描述,后面service注入该值
-    private Describe describe;
-    //商品对应图片信息,由service注入
+    
     private Image image;
     
-    public List<Comment> getComment() {
-        return comment;
-    }
+    private Describe describe;
+    
+	public Describe getDescribe() {
+		return describe;
+	}
 
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
-    }
+	public void setDescribe(Describe describe) {
+		this.describe = describe;
+	}
 
-    public Describe getDescribe() {
-        return describe;
-    }
+	public List<Comment> getComment() {
+		return comment;
+	}
 
-    public void setDescribe(Describe describe) {
-        this.describe = describe;
-    }
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
 
-    public Image getImage() {
-        return image;
-    }
+	public Image getImage() {
+		return image;
+	}
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
+	public void setImage(Image image) {
+		this.image = image;
+	}
 
-    public Integer getMerchandiseId() {
+	public Integer getMerchandiseId() {
         return merchandiseId;
     }
 
@@ -92,4 +100,37 @@ public class Merchandise {
     public void setMerchandiseInventory(Integer merchandiseInventory) {
         this.merchandiseInventory = merchandiseInventory;
     }
+
+    public String getMerchandiseTime() {
+        return merchandiseTime;
+    }
+
+    public void setMerchandiseTime(String merchandiseTime) {
+        this.merchandiseTime = merchandiseTime == null ? null : merchandiseTime.trim();
+    }
+    
+    public Integer getClazzId() {
+        return clazzId;
+    }
+
+    public void setClazzId(Integer clazzId) {
+        this.clazzId = clazzId;
+    }
+    
+
+    public Integer getIspromotion() {
+        return ispromotion;
+    }
+
+    public void setIspromotion(Integer ispromotion) {
+        this.ispromotion = ispromotion;
+    }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "商品id: "+merchandiseId+" 商品名称: "+merchandiseName;
+	}
+
+	
 }

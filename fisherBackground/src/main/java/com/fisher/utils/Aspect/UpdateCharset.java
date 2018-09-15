@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UpdateCharset {
-    String desc() default "sql的编码设置开始...";
+    String start() default "sql的编码设置开始...";
 }

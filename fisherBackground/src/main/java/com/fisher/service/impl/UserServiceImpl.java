@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.fisher.mapper.UserMapper;
 import com.fisher.pojo.User;
 import com.fisher.service.UserService;
+import com.fisher.utils.Aspect.UpdateCharset;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -18,18 +19,16 @@ public class UserServiceImpl implements UserService{
         // TODO Auto-generated method stub
         return userMapper.deleteByPrimaryKey(userId);
     }
-
+    @UpdateCharset
     @Override
     public int insert(User record) {
         // TODO Auto-generated method stub
-        userMapper.setCharsetToUtf8mb4();
         return userMapper.insert(record);
     }
-
+    @UpdateCharset
     @Override
     public int insertSelective(User record) {
         // TODO Auto-generated method stub
-        userMapper.setCharsetToUtf8mb4();
         return userMapper.insertSelective(record);
     }
 
